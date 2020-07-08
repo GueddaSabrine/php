@@ -1,20 +1,28 @@
 <?php
-$nom_de_la_variable = "valeur de la variable";
-$couleur ="Rose";
-$_b=50; //valid
-$p0=62;//Valid
-$p_0=false;//Valid
+//$nom_de_la_variable = "valeur de la variable";
+//$couleur ="Rose";
+//$_b=50; //valid
+//$p0=62;//Valid
+//$p_0=false;//Valid
 //$-b=50; //nonValid
 //$0p=78;//nonValid
 //$p-0="valeur"//nonValid
+//<!--//Le PHP est un language faiblement typé-->
+//<!--//Local-->
+//<!--//Global-->
+//<!--//Static-->
+//<!--$stagiaire = "Badji";-->
+//<!--function priorite(){-->
+//<!--    $stagiaire = "Aoukas";-->
+//<!--    echo $stagiaire;-->
+//<!--}-->
+//<!---->
+//<!--function-->
+
+$x = "abc";
+$xx = 200;
+
 ?>
-
-//Le PHP est un language faiblement typé
-//Local
-//Global
-//Static
-
-
 <!doctype html>
 <html lang="fr">
 <head>
@@ -26,10 +34,13 @@ $p_0=false;//Valid
 </head>
 <body>
 
-<h1><?php echo $nom_de_la_variable;?></h1>
-<h1><?php echo $couleur;?></h1>
-<h1><?php echo "les noms des variables sont sensible à la casse";?></h1>
+<!--<h1>--><?php //echo $nom_de_la_variable;?><!--</h1>-->
+<!--<h1>--><?php //echo $couleur;?><!--</h1>-->
+<!--<h1>--><?php //echo "les noms des variables sont sensible à la casse";?><!--</h1>-->
 
+<h1><?php echo $x ?></h1>;
+<h1><?php echo $$x ?></h1>;
+<h1><?php echo $abc ?></h1>;
 
 </body>
 </html>

@@ -20,6 +20,7 @@
 <?php echo "<h1 style='color: deeppink'>Je vous dit bonjour depuis la page HTML</h1>" ?>
 <span>Je suis en plein apprentissage du <?php echo "<b>PHP</b>" </span>
 
+//Les Tags
 
 </body>
 </html>

@@ -41,6 +41,8 @@ var_dump($texte1);
 echo "<br>";
 var_dump($m);
 
+//Les Affichages
+
 ?>
 
 </body>
