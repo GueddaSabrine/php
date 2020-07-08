@@ -28,38 +28,37 @@
 <!--    </p>-->
 <!--</form>-->
 <!--//////////////////////TEMPERATURE/////////////////////-->
-    <div>
-        <form method="post">
-            <p>
-                <label for
-            </p>
-
-        </form>
-    </div>
+<!--    <div>-->
+<!--        <form method="post">-->
+<!--            <p>-->
+<!--                <label for-->
+<!--            </p>-->
+<!---->
+<!--        </form>-->
+<!--    </div>-->
 <!--////////////////////////////MENUE DEROULANT AVEC FORMULAIRE-->
-    <div>
-        <form method="post">
+    <h3>Calculatrice</h3>
+    <form  method="POST">
+        <!-- opérande 1 -->
 
-            <input type="number" id="choix1" name="$choix1">
-            <select name="operateur" id="operateur">
-                <option>+</option>
-                <option>-</option>
-                <option>/</option>
-                <option>*</option>
-            </select>
+        <input placeholder="un nombre" type="number" step="any" name="op1" />
 
-            <input type="number" id="choix2" name="$choix2">
-            <input type="number" id="resultat" name="$resultat">
+        <!-- opération -->
 
-            <?php
-            $choix1= $_POST['choix1'];
-            $choix2= $_POST['choix2'];
-            $resultat= $choix1 + $choix2;
-            ?>
+        <select name="operation">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="x">x</option>
+            <option value="/">/</option>
+        </select>
 
-        </form>
-    </div>
+        <!-- opérande 2 -->
 
+        <input placeholder="un nombre" type="number" step="any" name="op2" />
+
+        <!-- bouton -->
+
+        <button type="submit" name="soumis"> Calculer</button>
 
 
 
