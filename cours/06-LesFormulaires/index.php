@@ -15,19 +15,54 @@
 </head>
 <body>
 <form METHOD="post">
-    <p>
-        <label for="prenom">Prenom</label>
-        <input type="text"/>
-    </p>
-    <p>
-        <label for="prenom">Age</label>
-        <input type="text"/>
-    </p>
-    <p>
-        <input type="submit" value="Valider"/>
-    </p>
+<!--    <p>-->
+<!--        <label for="prenom">Prenom</label>-->
+<!--        <input type="text"/>-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <label for="prenom">Age</label>-->
+<!--        <input type="text"/>-->
+<!--    </p>-->
+<!--    <p>-->
+<!--        <input type="submit" value="Valider"/>-->
+<!--    </p>-->
+<!--</form>-->
+<!--//////////////////////TEMPERATURE/////////////////////-->
+    <div>
+        <form method="post">
+            <p>
+                <label for
+            </p>
 
-</form>
+        </form>
+    </div>
+<!--////////////////////////////MENUE DEROULANT AVEC FORMULAIRE-->
+    <div>
+        <form method="post">
+
+            <input type="number" id="choix1" name="$choix1">
+            <select name="operateur" id="operateur">
+                <option>+</option>
+                <option>-</option>
+                <option>/</option>
+                <option>*</option>
+            </select>
+
+            <input type="number" id="choix2" name="$choix2">
+            <input type="number" id="resultat" name="$resultat">
+
+            <?php
+            $choix1= $_POST['choix1'];
+            $choix2= $_POST['choix2'];
+            $resultat= $choix1 + $choix2;
+            ?>
+
+        </form>
+    </div>
+
+
+
+
 </body>
 </html>
 
