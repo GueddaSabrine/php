@@ -1,7 +1,8 @@
 <?php
 
 
-abstract class pokemon{
+abstract class pokemon
+{
     /**
      * @var string
      */
@@ -10,11 +11,16 @@ abstract class pokemon{
      * @var int
      */
     private $poids;
+    /**
+     * @var int
+     */
+    private $vitesse;
 
-    public function __construct(string $nom, int $poids)
+    public function __construct(string $nom, int $poids, int $vitesse)
     {
         $this->nom = $nom;
         $this->poids = $poids;
+        $this->vitesse = $vitesse;
     }
 
     /**
@@ -26,7 +32,7 @@ abstract class pokemon{
     }
 
     /**
-     * @param string $couleur
+     * @param string $nom
      */
     public function setNom(string $nom): void
     {
@@ -49,15 +55,26 @@ abstract class pokemon{
         $this->poids = $poids;
     }
 
-    abstract function vitesse();
+    /**
+     * @return int
+     */
+    public function getVitesse(): int
+    {
+        return $this->vitesse;
+    }
 
     /**
-     * @return mixed
+     * @param int $vitesse
      */
-    abstract function vitesse();
+    public function setVitesse(string $vitesse): void
+    {
+        $this->vitesse = $vitesse;
+    }
+
+    abstract function frequence();
 
     public function __toString()
     {
-        return "<h2>Je suis un " . get_class($this) . "<br>Je suis le Pokemon $this->nom<br>Je pèse $this->poids kg</h2>";
+        return "<h2>Je suis un " . get_class($this) . "<br>Je suis le Pokemon $this->nom<br>Je pèse $this->poids kg <br>Ma vitesse est de  $this->vitesse km/h</h2>";
     }
 }
