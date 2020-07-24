@@ -1,55 +1,60 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<?php
 
-<!--    Font awesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+//Parametres de connexion a la base de données
+$serveur = "localhost";
+$database = "formation_db";
+$user = "root";
+$pass = "";
 
-    <!-- Bootstrap CSS -->
-    <link <link rel="stylesheet" href="assets/css/bootstrap.css">>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"-->
-<!--          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+$url = "mysql:host=$serveur;dbname=$database";
 
-</head>
+try {
+    //On se connecte à la BDD
+    $connexion = new PDO($url, $user, $pass);
 
-<body>
+    //En cas d'eereur on leve une exception
+    $connexion->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-<div class="container">
+    //Requete d'insertion sans preparation
+    //$sqlReq = "INSERT INTO EMPLOYES(prenom,ddn,fonction,email,salaire)
+    //    VALUES('Badji',2007-07-24,'RH','badji@dawm.ge',70000),
+    //           ('Souly',2009-07-24,'DG','souly@dawm.ge',80000)";
 
-<!--    nav bar-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">DAWM-ASNIERES</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="nav navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.php">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="liste.php">Employes</a>
-                </li>
-            </ul>
-        </div></nav>
+    //Execution de la requete
+//    /** @var TYPE_NAME $sqlReq */
+//    $connexion->exec($sqlReq);
 
-<!--        page accueil-->
-    <div>
-        <h1>Accueil</h1>
-        <br>
-        Bonjour, vous etes sur la page d'accueil,
-    </div>
+    //Instruction de requete parametrée
+    $sqlReq = "INSERT INTO EMPLOYES(prenom,ddn,fonction,email,salaire)
+        VALUES(?,?,?,?,?)";
 
-</div>
+    //On prepare la requete
+    $req_preparee = $connexion->prepare($sqlReq);
 
-<!--        js-->
-        <script src="assets/js/jquery.js"></script>
-        <script src="assets/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/js/bootstrap.min.js"></script>
+    //Je passe les parametre à la requete
+    //$req_preparee->bindValue(1, "Talia", PDO::PARAM_STR);
+    //$req_preparee->bindValue(2, "2010-10-10", PDO::PARAM_STR);
+    //$req_preparee->bindValue(3, "Secretaire", PDO::PARAM_STR);
+    //$req_preparee->bindValue(4, "talia@dawm.ge", PDO::PARAM_STR);
+    //$req_preparee->bindValue(5, 45000, PDO::PARAM_INT);
 
-</body>
-</html>
+//    $req_preparee->execute();
+
+    $sql = "select * from employes";
+
+    $employes = $connexion->query($sql);
+
+    foreach ($employes as $employe){
+        echo "<h3>{$employe['prenom']} - {$employe['ddn']} - {$employe['fonction']} - {$employe['email']} - {$employe['salaire']}</h3>\";
+</h3>";
+    }
+
+
+} catch (Exception $e) {
+    exit($e->getMessage());
+}
+
+
+
+
+
