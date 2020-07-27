@@ -21,15 +21,14 @@ try {
     //           ('Souly',2009-07-24,'DG','souly@dawm.ge',80000)";
 
     //Execution de la requete
-//    /** @var TYPE_NAME $sqlReq */
-//    $connexion->exec($sqlReq);
+    //$connexion->exec($sqlReq);
 
     //Instruction de requete parametrée
-    $sqlReq = "INSERT INTO EMPLOYES(prenom,ddn,fonction,email,salaire)
-        VALUES(?,?,?,?,?)";
+    //$sqlReq = "INSERT INTO EMPLOYES(prenom,ddn,fonction,email,salaire)
+    //    VALUES(?,?,?,?,?)";
 
     //On prepare la requete
-    $req_preparee = $connexion->prepare($sqlReq);
+    //$req_preparee = $connexion->prepare($sqlReq);
 
     //Je passe les parametre à la requete
     //$req_preparee->bindValue(1, "Talia", PDO::PARAM_STR);
@@ -38,17 +37,16 @@ try {
     //$req_preparee->bindValue(4, "talia@dawm.ge", PDO::PARAM_STR);
     //$req_preparee->bindValue(5, 45000, PDO::PARAM_INT);
 
-//    $req_preparee->execute();
+    //$req_preparee->execute();
 
     $sql = "select * from employes";
 
     $employes = $connexion->query($sql);
 
     foreach ($employes as $employe){
-        echo "<h3>{$employe['prenom']} - {$employe['ddn']} - {$employe['fonction']} - {$employe['email']} - {$employe['salaire']}</h3>\";
-</h3>";
+        echo "<h3>{$employe['prenom']} - {$employe['salaire']}</h3>";
     }
-
+//    (rajouter les autres colonnes)
 
 } catch (Exception $e) {
     exit($e->getMessage());

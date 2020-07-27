@@ -1,54 +1,64 @@
 <?php
 require_once "functions/utils.php";
 
-if(isset($_POST['UPDATE']))
+if(isset($_POST['update']))
 {
 
+    $id = mysqli_real_escape_string($mysqli, $_POST['id']);
 
-    /** @var TYPE_NAME $mysql */
-    $id = mysqli_real_escape_string($mysql, $_POST['id']);
+    $prenom = mysqli_real_escape_string($mysqli, $_POST['prenom']);
+    $ddn = mysqli_real_escape_string($mysqli, $_POST['ddn']);
+    $fonction = mysqli_real_escape_string($mysqli, $_POST['fonction']);
+    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+    $salaire = mysqli_real_escape_string($mysqli, $_POST['salaire']);
 
-    /** @var TYPE_NAME $prenom */
-    $prenom = mysqli_real_escape_string($mysql, $_POST['prenom']);
-    /** @var TYPE_NAME $ddn */
-    $ddn = mysqli_real_escape_string($mysql, $_POST['ddn']);
-    /** @var TYPE_NAME $fonction */
-    $fonction = mysqli_real_escape_string($mysql, $_POST['fonction']);
-    /** @var TYPE_NAME $email */
-    $email = mysqli_real_escape_string($mysql, $_POST['email']);
-    /** @var TYPE_NAME $salaire */
-    $salaire = mysqli_real_escape_string($mysql, $_POST['salaire']);
-
-    // checking empty fields
-    if(empty($prenom) || empty($ddn) || empty($fonction)|| empty($email) || empty($salaire)) {
+    // empty field check
+    if(empty($prenom) || empty($ddn) || empty($fonction) || empty($email) || empty($salaire)) {
 
         if(empty($prenom)) {
-            echo "<font>prenom</font><br/>";
+            echo "<font color='red'>prenom field is empty.</font><br/>";
         }
 
         if(empty($ddn)) {
-            echo "<font>ddn</font><br/>";
+            echo "<font color='red'>ddn field is empty.</font><br/>";
         }
 
         if(empty($fonction)) {
-            echo "<font>fonction</font><br/>";
+            echo "<font color='red'>fonction field is empty.</font><br/>";
         }
 
-        if(empty($email)){
-            echo "<font>email</font><br/>";
+        if(empty($email)) {
+            echo "<font color='red'>email field is empty.</font><br/>";
         }
 
-        if(empty($salaire)){
-            echo "<font color='red'>salaire</font><br/>";
+        if(empty($salaire)) {
+            echo "<font color='red'>salaire field is empty.</font><br/>";
         }
     } else {
-        //charge nouvelle page
-        $result = mysqli_query($mysql, "UPDATE user SET prenom='$prenom',ddn='$ddn',fonction='$fonction',email='$email',salaire='$salaire' WHERE id=$id");
+        //charge la table
+        $result = mysqli_query($mysqli, "UPDATE users SET prenom='$prenom',ddn='$ddn',fonction='$fonction',email='$email',salaire='$salaire' WHERE id=$id");
 
-        //redirige vers index
-        header("Location: index.php");
+        //page a modifier
+        header("Location: liste.php");
     }
 }
+?>
+<?php
+//table des employés
+$id = $_GET['id'];
+
+//selecting data associated with this particular id
+$result = mysqli_query($mysqli, "SELECT * FROM users WHERE id=$id");
+
+while($res = mysqli_fetch_array($result))
+{
+    $prenom = $res['prenom'];
+    $ddn = $res['ddn'];
+    $fonction = $res['fonction'];
+    $email = $res['email'];
+    $salaire = $res['salaire'];
+}
+?>
 
 template_en_tete_page("Modifié");
 ?>

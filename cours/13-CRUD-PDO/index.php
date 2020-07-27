@@ -19,8 +19,6 @@ template_en_tete_page("Accueil");
     <hr>
     Bonjour, vous êtes sur la page d'accueil
 
-
-
 </div>
 
 <?php

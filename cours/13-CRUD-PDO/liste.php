@@ -1,11 +1,9 @@
 <?php
 require_once "functions/utils.php";
-$serveur = "localhost";
-$database = "formation_db";
-$user = "root";
-$pass = "";
 
-$url = "mysql:host=$serveur;dbname=$database";
+//fetching data in descending order (lastest entry first)
+//$result = mysql_query("SELECT * FROM users ORDER BY id DESC"); // mysql_query is deprecated
+$result = mysqli_query($mysqli, "SELECT * FROM users ORDER BY id DESC"); // using mysqli_query instead
 
 template_en_tete_page("Employés");
 ?>
@@ -29,6 +27,20 @@ template_en_tete_page("Employés");
                     <th>Salaire</th>
                     <th colspan="2">Actions</th>
                 </tr>
+
+                <?php
+                //while($res = mysql_fetch_array($result)) { // mysql_fetch_array is deprecated, we need to use mysqli_fetch_array
+                while($res = mysqli_fetch_array($result)) {
+                    echo "<tr>";
+                    echo "<td>".$res['prenom']."</td>";
+                    echo "<td>".$res['ddn']."</td>";
+                    echo "<td>".$res['fonction']."</td>";
+                    echo "<td>".$res['email']."</td>";
+                    echo "<td>".$res['salaire']."</td>";
+                    echo "<td><a href=\"modifier.php?id=$res[id]\">Modifier</a> | <a href=\"supprimer.php?id=$res[id]\" onClick=\"return confirm('Are you sure you want to delete?')\">Supprimer</a></td>";
+                }
+                ?>
+
                 </thead>
                 <tbody>
                 <tr>
@@ -38,7 +50,7 @@ template_en_tete_page("Employés");
                     <td>PDG</td>
                     <td>badji@dawm.ge</td>
                     <td>25000</td>
-                    <td><a href="modifier.php"><i class="fas fa-user-edit"></i></a></td>
+                    <td><a href=\"modifier.php?id=$res[id]\"><i class="fas fa-user-edit"></i></a></td>
                     <td><a href="supprimer.php?id=$res[id]\"><i class="fas fa-user-slash"></i></a></td>
                 </tr>
                 <tr>
@@ -48,7 +60,7 @@ template_en_tete_page("Employés");
                     <td>PDG</td>
                     <td>souly@dawm.ge</td>
                     <td>25000</td>
-                    <td><a href="modifier.php"><i class="fas fa-user-edit"></i></a></td>
+                    <td><a href=\"modifier.php?id=$res[id]\"><i class="fas fa-user-edit"></i></a></td>
                     <td><a href="supprimer.php?id=$res[id]\"><i class="fas fa-user-slash"></i></a></td>
                 </tr>
                 <tr>
@@ -58,7 +70,7 @@ template_en_tete_page("Employés");
                     <td>PDG</td>
                     <td>tali@dawm.ge</td>
                     <td>25000</td>
-                    <td><a href="modifier.php"><i class="fas fa-user-edit"></i></a></td>
+                    <td><a href=\"modifier.php?id=$res[id]\"><i class="fas fa-user-edit"></i></a></td>
                     <td><a href="supprimer.php?id=$res[id]\"><i class="fas fa-user-slash"></i></a></td>
                 </tr>
                 </tbody>
